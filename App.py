@@ -2,11 +2,11 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-# Rute for startsiden
+#startsiden
 @app.route("/", methods=["GET", "POST"])
 def kalkulator():
     if request.method == "POST":
-        # Hent verdier fra skjemaet
+        # Hent verdier fra siden vår. Basert på en fast formel
         initial_belop = float(request.form["initial_belop"])
         manedlig_bidrag = float(request.form["manedlig_bidrag"])
         tids_horisont = float(request.form["tids_horisont"])
@@ -28,4 +28,5 @@ def kalkulator():
     return render_template("index.html", resultat=False)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0", port=5000)
+

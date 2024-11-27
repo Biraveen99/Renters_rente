@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Renters Rente Kalkulator</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body><!-- Dette kobler seg til app.py og sender da informasjonen herifra til backenden min  -->
+    <div class="container"> 
+        <h1>Renters Rente Kalkulator</h1>
+        <form method="POST">
+            <label for="initial_belop">Initialbeløp (P):</label>
+            <input type="number" id="initial_belop" name="initial_belop" step="0.01" required>
+
+            <label for="manedlig_bidrag">Månedlig bidrag (M):</label>
+            <input type="number" id="manedlig_bidrag" name="manedlig_bidrag" step="0.01" required>
+
+            <label for="tids_horisont">Tidshorisont (år):</label>
+            <input type="number" id="tids_horisont" name="tids_horisont" step="1" required>
+
+            <label for="arlig_rente">Årlig rente (%):</label>
+            <input type="number" id="arlig_rente" name="arlig_rente" step="0.01" required>
+
+            <button type="submit">Beregn</button>
+        </form>
+
+        {% if resultat %}
+        <h2>Resultat:</h2>
+        <p><strong>Totalt spart beløp (inkludert renter):</strong> {{ sluttbelop | round(2) }} NOK</p>
+        <p><strong>Totalt beløp du har satt inn:</strong> {{ totalt_innsatt | round(2) }} NOK</p>
+        <p><strong>Gevinst fra renter:</strong> {{ gevinst | round(2) }} NOK</p>
+        {% endif %}
+    </div>
+</body>
+</html>
